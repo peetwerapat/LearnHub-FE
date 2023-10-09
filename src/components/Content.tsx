@@ -10,7 +10,11 @@ const Content = ({ content }: IContentProps) => {
   return (
     <div className={classes.content}>
       <Link to={`/content/${content.id}`} />
-      <p>{content.id}</p>
+      <h1>{content.videoTitle}</h1>
+      <p>{content.creatorName}</p>
+      <p>{content.comment}</p>
+      <p>{content.postedBy.username}</p>
+      <p>{content.rating}</p>
     </div>
   )
 }
