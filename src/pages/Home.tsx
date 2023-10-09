@@ -1,9 +1,9 @@
 import Content from '../components/Content'
-import useContent from '../hook/useContent'
+import useContents from '../hook/useContents'
 import classes from './Home.module.css'
 
 const Home = () => {
-  const { contents, isLoading } = useContent()
+  const { contents, isLoading } = useContents()
 
   if (isLoading) return <h1>Loading...</h1>
 
@@ -11,7 +11,7 @@ const Home = () => {
     <div className={classes.container}>
       <div className="feed-container">
         {contents &&
-          contents.map((content) => {
+          contents.data.map((content) => {
             return <Content key={content.id} content={content} />
           })}
       </div>
