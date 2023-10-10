@@ -12,7 +12,7 @@ const Content = ({ contents }: IContentProps) => {
         <a>
           <img src={contents.thumbnailUrl}></img>
           <div>
-            <p>title: {contents.videoTitle}</p>
+            <h2>{contents.videoTitle}</h2>
             <h5>{contents.comment}</h5>
           </div>
           <div>
