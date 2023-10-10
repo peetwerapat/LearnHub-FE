@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
 import { CredentialDTO, LoginDTO } from '../types/dto'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 interface IAuthProviderProps {
   children: ReactNode
@@ -27,7 +28,7 @@ const token = localStorage.getItem('token')
 const user = localStorage.getItem('username')
 
 const AuthProvider = ({ children }: IAuthProviderProps) => {
-  //   const navigate = useNavigate()
+  const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedin] = useState<boolean>(!!token)
   const [username, setUsername] = useState<string | null>(user)
 
@@ -52,7 +53,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     setIsLoggedin(false)
     setUsername(null)
 
-    // navigate('/')
+    navigate('/')
   }
 
   return <AuthContext.Provider value={{ isLoggedIn, username, login, logout }}>{children}</AuthContext.Provider>
