@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 
 const ContentDetail = () => {
   const { id } = useParams()
-  const { content, isLoading, error } = useContent()
+  const { content, isLoading, error, deleteContent } = useContent(id || '1')
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <p>{error}</p>
@@ -43,9 +43,9 @@ const ContentDetail = () => {
                 <Link to="/login" className={classes.login}></Link>
               )}
             </div>
-            {/* <div>
+            <div>
               <button onClick={deleteContent}>Delete</button>
-            </div> */}
+            </div>
           </div>
         </>
       )}
