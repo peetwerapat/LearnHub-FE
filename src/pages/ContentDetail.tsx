@@ -1,7 +1,10 @@
 import useContent from '../hook/useContent'
 import classes from './ContentDetail.module.css'
+import { useParams, Link, NavLink } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 const ContentDetail = () => {
+  const { id } = useParams()
   const { content, isLoading, error } = useContent()
 
   if (isLoading) return <h1>Loading...</h1>
@@ -11,11 +14,39 @@ const ContentDetail = () => {
     <div className={classes.container}>
       {content && (
         <>
-          <h1>{content.videoTitle}</h1>
-          <p>{content.creatorName}</p>
-          <p>{content.comment}</p>
-          <p>{content.postedBy.username}</p>
-          <p>{content.rating}</p>
+          <div>
+            <h1>{content.videoTitle}</h1>
+            <h5>{content.creatorName}</h5>
+          </div>
+          <div>
+            <ReactPlayer url={content.videoUrl} />
+          </div>
+          <div>
+            <p>{content.comment}</p>
+            <div>
+              <p>{content.rating}</p>
+              <p>{content.postedBy.username}</p>
+              <p>{content.createdAt}</p>
+              <p>{content.updatedAt}</p>
+            </div>
+            <div>
+              {localStorage.getItem('username') === content.postedBy.username ? (
+                <>
+                  <NavLink
+                    className={({ isActive }) => (isActive ? classes.active : classes.inactive)}
+                    to={`/content/${id}/edit`}
+                  >
+                    Edit{' '}
+                  </NavLink>
+                </>
+              ) : (
+                <Link to="/login" className={classes.login}></Link>
+              )}
+            </div>
+            {/* <div>
+              <button onClick={deleteContent}>Delete</button>
+            </div> */}
+          </div>
         </>
       )}
     </div>
