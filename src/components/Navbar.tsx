@@ -17,6 +17,9 @@ const Navbar = () => {
       <div className={classes.menu}>
         {isLoggedIn ? (
           <>
+            <NavLink className={({ isActive }) => (isActive ? classes.active : classes.inactive)} to="/create">
+              Create
+            </NavLink>
             <button className={classes.login} onClick={logout}>
               Log out
             </button>
