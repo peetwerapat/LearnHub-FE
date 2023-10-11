@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ContentDTO } from '../types/dto'
+import { ContentDTO, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
 
 const useContent = (id: string) => {
@@ -25,6 +25,31 @@ const useContent = (id: string) => {
     fetchData()
   }, [id])
 
+  const editContent = async (editComment: string, editRating: number) => {
+    const token = localStorage.getItem('token')
+    const newContentBody: UpdateContentDTO = {
+      comment: editComment,
+      rating: editRating,
+    }
+
+    setIsSubmitting(true)
+    try {
+      const res = await axios.patch<UpdateContentDTO>(
+        `https://api.learnhub.thanayut.in.th/content/${id}`,
+        newContentBody,
+        {
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        },
+      )
+
+      console.log(res.data)
+    } catch (err) {
+      throw new Error('Cannot edit content')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const deleteContent = async () => {
     const token = localStorage.getItem('token')
 
@@ -45,7 +70,7 @@ const useContent = (id: string) => {
     }
   }
 
-  return { content, isLoading, error, isSubmitting, deleteContent }
+  return { content, isLoading, error, isSubmitting, editContent, deleteContent }
 }
 
 export default useContent

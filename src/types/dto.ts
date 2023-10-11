@@ -1,4 +1,4 @@
-export interface UserDTO {
+export interface PostedBy {
   id: number
   username: string
   name: string
@@ -29,10 +29,9 @@ export interface ContentDTO {
   thumbnailUrl: string
   creatorName: string
   creatorUrl: string
-  // postedBy: UserDTO
+  postedBy: PostedBy
   createdAt: string
   updatedAt: string
-  postedBy: { id: number; username: string; name: string; registeredAt: string }
 }
 
 export interface ContentsDTO {
