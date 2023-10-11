@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Create from './pages/Create'
 import GuardedRoute from './guard/GuardedRoute'
 import { useAuth } from './providers/AuthProviders'
+import ContentDetail from './pages/ContentDetail'
 
 function App() {
   const { isLoggedIn } = useAuth()
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/content/:id" element={<ContentDetail />} />
 
         <Route element={<GuardedRoute isRouteAccessible={isLoggedIn} redirectRoute="/login" />}>
           <Route path="/create" element={<Create />} />
