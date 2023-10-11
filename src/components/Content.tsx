@@ -3,21 +3,28 @@ import { ContentDTO } from '../types/dto'
 import classes from './Content.module.css'
 
 interface IContentProps {
-  content: ContentDTO
+  contents: ContentDTO
 }
 
-const Content = ({ content }: IContentProps) => {
+const Content = ({ contents }: IContentProps) => {
   return (
-    <>
-      <div className={classes.content}>
-        <Link to={`/content/${content.id}`} />
-        <h1>{content.videoTitle}</h1>
-        <p>{content.creatorName}</p>
-        <p>{content.comment}</p>
-        <p>{content.postedBy.username}</p>
-        <p>{content.rating}</p>
-      </div>
-    </>
+    <div className={classes.content}>
+      <Link to={`/content/${contents.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+        <a>
+          <img src={contents.thumbnailUrl}></img>
+          <div>
+            <h2>{contents.videoTitle}</h2>
+            <h5>{contents.comment}</h5>
+          </div>
+          <div>
+            <p>{contents.postedBy.username}</p>
+          </div>
+          <div>
+            <p>{contents.rating}</p>
+          </div>
+        </a>
+      </Link>
+    </div>
   )
 }
 
