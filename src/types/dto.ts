@@ -29,9 +29,10 @@ export interface ContentDTO {
   thumbnailUrl: string
   creatorName: string
   creatorUrl: string
-  postedBy: UserDTO
+  // postedBy: UserDTO
   createdAt: string
   updatedAt: string
+  postedBy: { id: number; username: string; name: string; registeredAt: string }
 }
 
 export interface ContentsDTO {
