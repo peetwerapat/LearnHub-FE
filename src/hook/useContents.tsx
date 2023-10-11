@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ContentDTO, ContentsDTO, CreateContentDTO } from '../types/dto'
+import { ContentsDTO, CreateContentDTO } from '../types/dto'
 import axios from 'axios'
 
 const useContents = () => {
@@ -24,6 +24,7 @@ const useContents = () => {
   }, [])
 
   const createContent = async (newUrl: string, newComment: string, newRating: number) => {
+    const token = localStorage.getItem('token')
     const newContentBody: CreateContentDTO = {
       videoUrl: newUrl,
       comment: newComment,
@@ -33,8 +34,8 @@ const useContents = () => {
     setIsSubmitting(true)
 
     try {
-      const res = await axios.post<ContentDTO>('https://api.learnhub.thanayut.in.th/content', newContentBody, {
-        headers: { 'Content-Type': 'application/json' },
+      const res = await axios.post<CreateContentDTO>('https://api.learnhub.thanayut.in.th/content', newContentBody, {
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       })
 
       console.log(res.data)

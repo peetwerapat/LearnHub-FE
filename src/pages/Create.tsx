@@ -18,7 +18,7 @@ const Create = () => {
 
       navigate('/')
     } catch (err) {
-      console.error(err)
+      console.log(err)
     }
   }
 
