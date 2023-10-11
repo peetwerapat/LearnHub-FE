@@ -4,19 +4,25 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Create from './pages/Create'
+import GuardedRoute from './guard/GuardedRoute'
+import { useAuth } from './providers/AuthProviders'
 
 function App() {
-  //   const { isLoggedIn } = useAuth()
+  const { isLoggedIn } = useAuth()
 
   return (
     <div className="App">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/create" element={<Create />} />
-      </Routes>
-      <Routes>
-        <Route path="/login" element={<Login />} />
+
+        <Route element={<GuardedRoute isRouteAccessible={isLoggedIn} redirectRoute="/login" />}>
+          <Route path="/create" element={<Create />} />
+        </Route>
+
+        <Route element={<GuardedRoute isRouteAccessible={!isLoggedIn} redirectRoute="/" />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
       </Routes>
     </div>
   )
