@@ -23,7 +23,7 @@ const Create = () => {
   }
 
   return (
-    <form className={classes.postForm} onSubmit={handleSubmit}>
+    <form className={classes.contentForm} onSubmit={handleSubmit}>
       <label>Video URL</label>
       <input type="text" onChange={(e) => setNewVideoUrl(e.target.value)} required />
       <label>Comment</label>
