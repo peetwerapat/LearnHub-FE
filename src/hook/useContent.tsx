@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { ContentDTO, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const useContent = (id: string) => {
   const [content, setContent] = useState<ContentDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +63,7 @@ const useContent = (id: string) => {
           Authorization: `Bearer ${token}`,
         },
       })
-
+      navigate('/')
       console.log(res.data)
     } catch (err) {
       throw new Error('Cannot delete content')

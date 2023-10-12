@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ContentDTO } from '../types/dto'
+import ReactStars from 'react-stars'
 
 interface IContentProps {
   contents: ContentDTO
@@ -17,6 +18,7 @@ const Content = ({ contents }: IContentProps) => {
           </div>
           <div className="flex px-3 justify-between">
             <p>{contents.postedBy.username}</p>
+            <ReactStars count={5} value={contents.rating} size={24} color2={'#ffd700'} edit={false} half={false} />
           </div>
         </>
       </Link>
