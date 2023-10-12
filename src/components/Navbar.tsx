@@ -10,11 +10,13 @@ const Navbar = () => {
     <div className="bc-white w-full flex justify-between item-center box-border shadow-lg py-5 px-4">
       <div className="flex items-center gap-4">
         <img src="/src/assets/logo.svg" alt="logo" />
-        <NavLink className={({ isActive }) => (isActive ? classes.active : classes.inactive)} to="/">
-          LearnHub
-        </NavLink>
+        <div className="text-orange-500 font-extrabold text-xl">
+          <NavLink className={({ isActive }) => (isActive ? classes.active : classes.inactive)} to="/">
+            LearnHub
+          </NavLink>
+        </div>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="text-orange-500 font-bold flex items-center gap-4">
         {isLoggedIn ? (
           <>
             <NavLink className={({ isActive }) => (isActive ? classes.active : classes.inactive)} to="/create">

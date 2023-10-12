@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className={classes.container}>
       <h1 className="text-orange-500 uppercase font-extrabold text-3xl">Learnhub</h1>
-      <div className="flex-col justify-center">
+      <div className="grid grid-cols-4 gap-2">
         {contents &&
           contents.data.map((content) => {
             return <Content key={content.id} contents={content} />
