@@ -1,4 +1,4 @@
-.top {
+/* .top {
   width: 100%;
   height: auto;
   padding: 18px 14px;
@@ -21,12 +21,8 @@
   text-decoration: none;
 }
 
-.active {
-  color: blue;
+.isActive {
+  color: orange;
   font-weight: bold;
   text-decoration: none;
-}
-
-.logoname {
-  color: orange;
-}
+} */

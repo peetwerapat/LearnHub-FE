@@ -1,10 +1,3 @@
-export interface PostedBy {
-  id: number
-  username: string
-  name: string
-  registeredAt: string
-}
-
 export interface LoginDTO {
   username: string
   password: string
@@ -29,7 +22,7 @@ export interface ContentDTO {
   thumbnailUrl: string
   creatorName: string
   creatorUrl: string
-  postedBy: PostedBy
+  postedBy: { id: number; username: string; name: string; registeredAt: string }
   createdAt: string
   updatedAt: string
 }

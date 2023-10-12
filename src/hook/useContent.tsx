@@ -12,7 +12,7 @@ const useContent = (id: string) => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const res = await axios.get<ContentDTO>('https://api.learnhub.thanayut.in.th/content')
+        const res = await axios.get<ContentDTO>(`https://api.learnhub.thanayut.in.th/content/${id}`)
 
         setContent(res.data)
       } catch {

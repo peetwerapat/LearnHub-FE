@@ -10,7 +10,7 @@ const Content = ({ contents }: IContentProps) => {
   return (
     <div className={classes.content}>
       <Link to={`/content/${contents.id}`} style={{ textDecoration: 'none', color: 'black' }}>
-        <a>
+        <>
           <img src={contents.thumbnailUrl}></img>
           <div>
             <h2>{contents.videoTitle}</h2>
@@ -22,7 +22,7 @@ const Content = ({ contents }: IContentProps) => {
           <div>
             <p>{contents.rating}</p>
           </div>
-        </a>
+        </>
       </Link>
     </div>
   )

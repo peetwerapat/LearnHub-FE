@@ -9,7 +9,8 @@ const Home = () => {
 
   return (
     <div className={classes.container}>
-      <div className="feed-container">
+      <h1 className="text-orange-500 uppercase font-extrabold text-3xl">Learnhub</h1>
+      <div className="flex-col justify-center">
         {contents &&
           contents.data.map((content) => {
             return <Content key={content.id} contents={content} />

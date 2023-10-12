@@ -9,7 +9,6 @@ const ContentDetail = () => {
 
   if (isLoading) return <h1>Loading...</h1>
   if (error) return <p>{error}</p>
-
   return (
     <div className={classes.container}>
       {content && (

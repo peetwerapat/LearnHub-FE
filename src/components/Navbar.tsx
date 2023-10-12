@@ -7,14 +7,14 @@ const Navbar = () => {
   const { isLoggedIn, logout } = useAuth()
 
   return (
-    <div className={classes.top}>
-      <div className={classes.menu}>
+    <div className="bc-white w-full flex justify-between item-center box-border shadow-lg py-5 px-4">
+      <div className="flex items-center gap-4">
         <img src="/src/assets/logo.svg" alt="logo" />
         <NavLink className={({ isActive }) => (isActive ? classes.active : classes.inactive)} to="/">
           LearnHub
         </NavLink>
       </div>
-      <div className={classes.menu}>
+      <div className="flex items-center gap-4">
         {isLoggedIn ? (
           <>
             <NavLink className={({ isActive }) => (isActive ? classes.active : classes.inactive)} to="/create">
