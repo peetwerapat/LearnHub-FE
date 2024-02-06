@@ -31,19 +31,27 @@ const ContentDetail = () => {
             <div>
               {localStorage.getItem('username') === content.postedBy.username ? (
                 <>
-                  <NavLink
-                    className={({ isActive }) => (isActive ? classes.active : classes.inactive)}
-                    to={`/content/${id}/edit`}
-                  >
-                    Edit{' '}
-                  </NavLink>
+                  <div>
+                    <NavLink
+                      className={({ isActive }) => (isActive ? classes.active : classes.inactive)}
+                      to={`/content/${id}/edit`}
+                    >
+                      Edit{' '}
+                    </NavLink>
+                  </div>
+                  <div>
+                    <NavLink
+                      onClick={deleteContent}
+                      className={({ isActive }) => (isActive ? classes.active : classes.inactive)}
+                      to={'/'}
+                    >
+                      Delete{' '}
+                    </NavLink>
+                  </div>
                 </>
               ) : (
                 <Link to="/login" className={classes.login}></Link>
               )}
-            </div>
-            <div>
-              <button onClick={deleteContent}>Delete</button>
             </div>
           </div>
         </>

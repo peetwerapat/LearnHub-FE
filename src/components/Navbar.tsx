@@ -27,9 +27,15 @@ const Navbar = () => {
             </button>
           </>
         ) : (
-          <Link to="/login" className={classes.login}>
-            Login
-          </Link>
+          <>
+            <Link to="/user" className={classes.login}>
+              Register
+            </Link>
+
+            <Link to="/login" className={classes.login}>
+              Login
+            </Link>
+          </>
         )}
       </div>
     </div>

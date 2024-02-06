@@ -3,10 +3,10 @@ export interface LoginDTO {
   password: string
 }
 
-export interface RegisterDTO {
+export interface ICreateUserDto {
+  name: string
   username: string
   password: string
-  name: string
 }
 
 export interface CredentialDTO {
@@ -27,9 +27,7 @@ export interface ContentDTO {
   updatedAt: string
 }
 
-export interface ContentsDTO {
-  data: ContentDTO[]
-}
+export type ContentsDTO = ContentDTO[]
 
 export interface ErrorDTO {
   statusCode: number
