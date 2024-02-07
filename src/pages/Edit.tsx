@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react'
 import updateContent from '../hook/useContent'
 import { useNavigate, useParams } from 'react-router-dom'
 import classes from './Edit.module.css'
+import ReactStars from 'react-stars'
 
 const EditContent = () => {
   const { id } = useParams()
@@ -32,7 +33,7 @@ const EditContent = () => {
         <label>Comment (280 characters maximum)</label>
         <input type="text" value={editComment} onChange={(e) => setEditComment(e.target.value)} required />
         <label>Rating</label>
-        {/* <ReactStars count={5} value={editRating} size={24} color2={'#ffd700'} edit={false} half={false} /> */}
+        <ReactStars count={5} value={editRating} size={24} color2={'#ffd700'} edit={false} half={false} />
         <input type="number" value={editRating} onChange={(e) => setEditRating(Number(e.target.value))} required />
 
         <button type="submit" disabled={isSubmitting}>

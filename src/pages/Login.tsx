@@ -1,5 +1,4 @@
 import { FormEvent, useState } from 'react'
-import classes from './Login.module.css'
 import { useAuth } from '../providers/AuthProviders'
 import { useNavigate } from 'react-router-dom'
 
@@ -21,14 +20,22 @@ const Login = () => {
     }
   }
   return (
-    <form className={classes.loginForm} onSubmit={handleSubmit}>
-      <label>Username:</label>
-      <input type="text" onChange={(e) => setUsername(e.target.value)} />
+    <form className="flex flex-col w-auto h-auto bg-white p-4" onSubmit={handleSubmit}>
+      <label className="flex justify-center font-bold">Username</label>
+      <input
+        className="border-2 border-orange-400 mt-1 rounded-md"
+        type="text"
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-      <label>Password:</label>
-      <input type="Password" onChange={(e) => setPassword(e.target.value)} />
+      <label className="flex justify-center pt-4 font-bold">Password</label>
+      <input
+        className="border-2 border-orange-400 mt-1 rounded-md"
+        type="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-      <input type="submit" value="Login" />
+      <button className="pt-4 font-extrabold">Login</button>
     </form>
   )
 }

@@ -21,17 +21,29 @@ const Register = () => {
     }
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Name:</label>
-      <input type="text" onChange={(e) => setName(e.target.value)} />
+    <form className="flex flex-col w-auto h-auto bg-white p-4" onSubmit={handleSubmit}>
+      <label className="flex justify-center font-bold">Name</label>
+      <input
+        className="border-2 border-orange-400 mt-1 rounded-md"
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+      />
 
-      <label>Username:</label>
-      <input type="text" onChange={(e) => setUsername(e.target.value)} />
+      <label className="flex justify-center font-bold mt-4">Username</label>
+      <input
+        className="border-2 border-orange-400 mt-1 rounded-md"
+        type="text"
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
-      <label>Password:</label>
-      <input type="Password" onChange={(e) => setPassword(e.target.value)} />
+      <label className="flex justify-center font-bold mt-4">Password</label>
+      <input
+        className="border-2 border-orange-400 mt-1 rounded-md"
+        type="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
-      <input type="submit" value="Register" />
+      <button className="pt-4 font-extrabold">Register</button>
     </form>
   )
 }

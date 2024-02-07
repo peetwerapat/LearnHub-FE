@@ -8,19 +8,15 @@ interface IContentProps {
 
 const Content = ({ contents }: IContentProps) => {
   return (
-    <div className="flex item-center rounded-lg bg-gray-300 ">
+    <div className="flex item-center rounded-lg bg-gray-300 p-3 ">
       <Link to={`/content/${contents.id}`} style={{ textDecoration: 'none', color: 'black' }}>
-        <>
-          <img src={contents.thumbnailUrl}></img>
-          <div className="flex flex-col p-3">
-            <h2>{contents.videoTitle}</h2>
-            <h5>{contents.comment}</h5>
-          </div>
-          <div className="flex px-3 justify-between">
-            <p>{contents.postedBy.username}</p>
-            <ReactStars count={5} value={contents.rating} size={24} color2={'#ffd700'} edit={false} half={false} />
-          </div>
-        </>
+        <img src={contents.thumbnailUrl}></img>
+        <div className="flex flex-col py-3">
+          <h2>{contents.videoTitle}</h2>
+          <h5>{contents.comment}</h5>
+          <p>{contents.postedBy.username}</p>
+          <ReactStars count={5} value={contents.rating} size={24} color2={'#ffd700'} edit={false} half={false} />
+        </div>
       </Link>
     </div>
   )
