@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ContentDTO, UpdateContentDTO } from '../types/dto'
+import { ContentDTO, IResponseData, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,9 +14,9 @@ const useContent = (id: string) => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const res = await axios.get<ContentDTO>(`http://localhost:8080/content/${id}`)
+        const res = await axios.get<IResponseData<ContentDTO>>(`http://localhost:8000/v1/content/${id}`)
 
-        setContent(res.data)
+        setContent(res.data.data)
       } catch {
         setError('Data not found')
       } finally {
@@ -36,7 +36,7 @@ const useContent = (id: string) => {
 
     setIsSubmitting(true)
     try {
-      const res = await axios.patch<UpdateContentDTO>(`http://localhost:8080/content/${id}`, newContentBody, {
+      const res = await axios.patch<UpdateContentDTO>(`http://localhost:8000/v1/content/${id}`, newContentBody, {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       })
 
@@ -53,7 +53,7 @@ const useContent = (id: string) => {
 
     setIsSubmitting(true)
     try {
-      const res = await axios.delete(`http://localhost:8080/content/${id}`, {
+      const res = await axios.delete(`http://localhost:8000/v1/content/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useContext, useState } from 'react'
 import { CredentialDTO, ICreateUserDto, LoginDTO } from '../types/dto'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 interface IAuthProviderProps {
@@ -9,9 +9,9 @@ interface IAuthProviderProps {
 
 interface IAuthContextType {
   isLoggedIn: boolean
-  username: string | null
-  login: (username: string, password: string) => Promise<void>
-  register: (username: string, password: string, name: string) => Promise<void>
+  email: string | null
+  login: (email: string, password: string) => Promise<void>
+  register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>
   logout: () => void
 }
 
@@ -26,43 +26,43 @@ export const useAuth = () => {
 }
 
 const token = localStorage.getItem('token')
-const user = localStorage.getItem('username')
+const user = localStorage.getItem('email')
 
-const checkLoginStatus = async (token: string | null): Promise<boolean> => {
-  if (typeof token !== 'string') return false
-  try {
-    const currentUserResponse = await axios.get('http://localhost:8080/auth/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+// const checkLoginStatus = async (token: string | null): Promise<boolean> => {
+//   if (typeof token !== 'string') return false
+//   try {
+//     const currentUserResponse = await axios.get('http://localhost:8000/v1/auth/me', {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     })
 
-    if (currentUserResponse.status === 200) return true
-  } catch (error) {
-    if (error instanceof AxiosError && error.response?.status === 403) return false
+//     if (currentUserResponse.status === 200) return true
+//   } catch (error) {
+//     if (error instanceof AxiosError && error.response?.status === 403) return false
 
-    throw error
-  }
+//     throw error
+//   }
 
-  return false
-}
+//   return false
+// }
 
 const AuthProvider = ({ children }: IAuthProviderProps) => {
   const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedin] = useState<boolean>(false)
-  const [username, setUsername] = useState<string | null>(user)
+  const [email, setEmail] = useState<string | null>(user)
 
-  useEffect(() => {
-    checkLoginStatus(token).then((isLoggedInAlready) => {
-      setIsLoggedin(isLoggedInAlready)
-    })
-  }, [])
+  // useEffect(() => {
+  //   checkLoginStatus(token).then((isLoggedInAlready) => {
+  //     setIsLoggedin(isLoggedInAlready)
+  //   })
+  // }, [])
 
-  const register = async (username: string, password: string, name: string) => {
-    const registerBody: ICreateUserDto = { username, password, name }
+  const register = async (email: string, password: string, firstName: string, lastName: string) => {
+    const registerBody: ICreateUserDto = { email, password, firstName, lastName }
 
     try {
-      const res = await axios.post('http://localhost:8080/user', registerBody, {
+      const res = await axios.post('http://localhost:8000/v1/auth/sign-up', registerBody, {
         headers: { 'Content-Type': 'application/json' },
       })
 
@@ -72,18 +72,18 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     }
   }
 
-  const login = async (username: string, password: string) => {
-    const loginBody: LoginDTO = { username, password }
+  const login = async (email: string, password: string) => {
+    const loginBody: LoginDTO = { email, password }
 
     try {
-      const res = await axios.post<CredentialDTO>('http://localhost:8080/auth/login', loginBody, {
+      const res = await axios.post<CredentialDTO>('http://localhost:8000/v1/auth/sign-in', loginBody, {
         headers: { 'Content-Type': 'application/json' },
       })
 
       localStorage.setItem('token', res.data.accessToken)
-      localStorage.setItem('username', username)
+      localStorage.setItem('email', email)
       setIsLoggedin(true)
-      setUsername(username)
+      setEmail(email)
     } catch (err) {
       throw new Error('Invalid username or password')
     }
@@ -91,13 +91,13 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
   const logout = () => {
     localStorage.clear()
     setIsLoggedin(false)
-    setUsername(null)
+    setEmail(null)
 
     navigate('/')
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, username, register, login, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isLoggedIn, email, register, login, logout }}>{children}</AuthContext.Provider>
   )
 }
 

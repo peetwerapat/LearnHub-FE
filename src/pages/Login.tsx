@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const { login } = useAuth()
   const navigate = useNavigate()
-  const [username, setUsername] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
     try {
-      await login(username, password)
+      await login(email, password)
 
       navigate('/')
     } catch (err) {
@@ -21,11 +21,11 @@ const Login = () => {
   }
   return (
     <form className="flex flex-col w-auto h-auto bg-white p-4" onSubmit={handleSubmit}>
-      <label className="flex justify-center font-bold">Username</label>
+      <label className="flex justify-center font-bold">Email</label>
       <input
         className="border-2 border-orange-400 mt-1 rounded-md"
         type="text"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <label className="flex justify-center pt-4 font-bold">Password</label>

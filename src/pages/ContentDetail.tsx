@@ -24,12 +24,12 @@ const ContentDetail = () => {
             <p>{content.comment}</p>
             <div>
               <p>{content.rating}</p>
-              <p>{content.postedBy.username}</p>
+              <p>{content.postedBy}</p>
               <p>{content.createdAt}</p>
               <p>{content.updatedAt}</p>
             </div>
             <div>
-              {localStorage.getItem('username') === content.postedBy.username ? (
+              {localStorage.getItem('username') === content.postedBy ? (
                 <>
                   <div>
                     <NavLink

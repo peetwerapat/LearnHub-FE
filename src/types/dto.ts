@@ -1,12 +1,21 @@
+export interface IResponseData<T> {
+  message: {
+    en: string;
+    th: string;
+  }
+  data: T
+}
+
 export interface LoginDTO {
-  username: string
+  email: string
   password: string
 }
 
 export interface ICreateUserDto {
-  name: string
-  username: string
+  email: string
   password: string
+  firstName: string
+  lastName: string
 }
 
 export interface CredentialDTO {
@@ -22,12 +31,10 @@ export interface ContentDTO {
   thumbnailUrl: string
   creatorName: string
   creatorUrl: string
-  postedBy: { id: number; username: string; name: string; registeredAt: string }
+  postedBy: string
   createdAt: string
   updatedAt: string
 }
-
-export type ContentsDTO = ContentDTO[]
 
 export interface ErrorDTO {
   statusCode: number
